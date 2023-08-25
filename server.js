@@ -37,8 +37,8 @@ http
         return res.end(`Result: ${result}`);
       }).catch((e) => {
         res.writeHead(500);
-        console.log('Request errored out');
-        return res.end(JSON.stringify(e));
+        console.error('Request errored out', e);
+        return res.end('blimey');
       });
     // curl --get "http://localhost:3000/fibonacci-worker?number=10&type=iterative"
     } else if(url.pathname === '/fibonacci-worker') {
@@ -51,8 +51,8 @@ http
        });
        fibonacciWorker.on("error" , (e) => {
         res.writeHead(500);
-        console.log('Request errored out');
-        return res.end(JSON.stringify(e));
+        console.error('Request errored out', e);
+        return res.end('blimey');
        });
     } else {
       res.writeHead(200);
