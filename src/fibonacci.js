@@ -7,11 +7,12 @@ let iterations = 0;
 let fnCalls = 0;
 
 /* Note to self: remmeber to display delay on garbage collection with recursion, comment in the "localFatty" */
+// sequence in which each number is the sum of the two preceding ones... "n" is the number of times starting from 0
 
 function iterativeFib(n) {
   fnCalls++  
   let a = 0, b = 1, c, i;
-  if (n == 0) return a;
+  if (n === 0) return a;
   for (i = 2; i <= n; i++) {
     c = a + b;
     a = b;
