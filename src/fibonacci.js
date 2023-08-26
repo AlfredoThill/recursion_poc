@@ -6,8 +6,16 @@ const argType =  types.includes(argv.type) ? argv.type : types[0];
 let iterations = 0;
 let fnCalls = 0;
 
-/* Note to self: remmeber to display delay on garbage collection with recursion, comment in the "localFatty" */
 // sequence in which each number is the sum of the two preceding ones... "n" is the number of times starting from 0
+
+/* Note to self: remmeber to display TCO on Safari with
+  *  "use strict"
+  *  function dynamicFib(n, a = 0, b = 1) {
+  *      if (n == 0) return a;
+  *      if (n == 1) return b;
+  *      return dynamicFib(n - 1, b, a + b);
+  *  }
+*/
 
 function iterativeFib(n) {
   fnCalls++  

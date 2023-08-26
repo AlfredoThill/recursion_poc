@@ -3,23 +3,16 @@ const { Worker } = require( "worker_threads");
 const fibonacci = require('./src/fibonacci');
 const port = 3000;
 
+/* Note to self: remmeber to display delay on garbage collection with recursion, comment in the "localFatty" */
+
 const fibonacciWorker = new Worker("./src/worker.js", { resourceLimits: {
-    maxYoungGenerationSizeMb: 5,
-    maxOldGenerationSizeMb: 5,
-    codeRangeSizeMb: 5,
-    stackSizeMb: 5,
+    maxYoungGenerationSizeMb: 500,
+    maxOldGenerationSizeMb: 500,
+    codeRangeSizeMb: 500,
+    stackSizeMb: 500,
 }});
 fibonacciWorker.on("online", () => console.log('Worker started'));
 fibonacciWorker.on('exit', (code) => console.log(`Worker stopped with exit code ${code}`));
-
-/* Note to self: remmeber to display TCO on Safari with
-  *  "use strict"
-  *  function dynamicFib(n, a = 0, b = 1) {
-  *      if (n == 0) return a;
-  *      if (n == 1) return b;
-  *      return dynamicFib(n - 1, b, a + b);
-  *  }
-*/
 
 http
   .createServer((req, res) => {
